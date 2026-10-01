@@ -73,7 +73,7 @@ Live
 The BusyBox pod uses the following image:
 
 ```text
-ikulyk404/busyboxplus:curl
+ikulykin404/busyboxplus:curl
 ```
 
 First, get the IP address of the `todoapp` pod:
