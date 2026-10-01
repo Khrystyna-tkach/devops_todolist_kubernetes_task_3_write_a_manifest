@@ -1,6 +1,6 @@
 All Kubernetes manifests are located in the `.infrastructure` folder.
 
-First, create the namespace:
+Create the namespace:
 
 ```bash
 kubectl apply -f .infrastructure/namespace.yml
@@ -65,7 +65,7 @@ http://localhost:8000/api/liveness/
 Expected response:
 
 ```text
-Alive
+Live
 ```
 
 ## Test ToDo application using BusyBox
@@ -82,18 +82,10 @@ First, get the IP address of the `todoapp` pod:
 kubectl get pods -n todoapp -o wide
 ```
 
-Use the IP address of the `todoapp` pod to test the application.
-
 Test readiness endpoint:
 
 ```bash
 kubectl exec -n todoapp busybox -- curl http://<TODOAPP_POD_IP>:8000/api/readiness/
-```
-
-Example:
-
-```bash
-kubectl exec -n todoapp busybox -- curl http://10.244.0.5:8000/api/readiness/
 ```
 
 Expected response:
@@ -107,29 +99,14 @@ Test liveness endpoint:
 ```bash
 kubectl exec -n todoapp busybox -- curl http://<TODOAPP_POD_IP>:8000/api/liveness/
 ```
-
-Example:
-
-```bash
-kubectl exec -n todoapp busybox -- curl http://10.244.0.5:8000/api/liveness/
-```
-
 Expected response:
 
 ```text
-Alive
+Live
 ```
 
 Test the main ToDo application endpoint:
 
 ```bash
 kubectl exec -n todoapp busybox -- curl http://<TODOAPP_POD_IP>:8000/
-```
-
-## Delete Kubernetes resources
-
-To delete the namespace and all resources inside it:
-
-```bash
-kubectl delete namespace todoapp
 ```
